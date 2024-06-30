@@ -50,7 +50,7 @@ export default function Home() {
 
   return (
     <>
-      <nav class="flex flex-wrap items-center justify-between p-3 bg-white">
+      <nav class="flex flex-wrap items-center justify-between p-3 ">
         <div class="text-xl font-bold ml-5">ShopLane</div>
         <div class="flex md:hidden">
           <button id="hamburger">
@@ -104,7 +104,7 @@ export default function Home() {
               stroke-linejoin="round"
               d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
             />
-            <text x="13" y="10" class="text-xs text-black">
+            <text x="13" y="10" class="text-xs text-white">
               {cartCount}
             </text>
           </svg>
@@ -120,7 +120,9 @@ export default function Home() {
       <div class="relative w-full h-screen px-5" id="home">
         <div class="absolute inset-0 ">
           <img
-            src="https://as2.ftcdn.net/v2/jpg/06/26/35/15/1000_F_626351535_dGLCJiZAvwDp9AQeoDhtMMQ1LglRS5xh.jpg"
+            // src="https://as2.ftcdn.net/v2/jpg/06/26/35/15/1000_F_626351535_dGLCJiZAvwDp9AQeoDhtMMQ1LglRS5xh.jpg"
+            // src="https://media.istockphoto.com/id/1279375718/photo/couple-shopping-in-the-city.jpg?s=612x612&w=0&k=20&c=vFoFqICmIVsyzfu2Z_ucYfLbZSJhk0eH8IW-a-tqATo="
+            src="https://media.istockphoto.com/id/1348566506/photo/two-beautiful-happy-women-with-shopping-bags-in-the-city-next-to-shop-window-background.jpg?s=612x612&w=0&k=20&c=BNgru0G1nq5xUtTXivm2JU6HAfY7vxMEFKFsETpLTTE="
             alt="Background Image"
             class="object-cover object-center w-full h-full"
           />
@@ -151,71 +153,74 @@ export default function Home() {
       {/* <!-- our services section --> */}
       <section class="py-10" id="services">
         <div class="container mx-auto px-4">
-          <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+          <h2 class="text-3xl font-bold text-white md-5 mb-8 text-center">
             Our Clothing
           </h2>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
-              >
-                <a
-                  href="#"
-                  className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
+            {products
+              .filter((e) => e.category =="women's clothing" ||e.category =="men's clothing")
+              .map((product) => (
+                <div
+                  key={product.id}
+                  className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md"
                 >
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="object-cover"
-                  />
-                </a>
-                <div className="mt-4 px-5 pb-5 flex justify-between flex-col h-auto">
-                  <a>
-                    <h5 className="text-xl tracking-tight text-slate-900">
-                      {product.title}
-                    </h5>
-                  </a>
-                  <div className="mt-2 mb-5 flex items-center justify-between">
-                    <p>
-                      <span className="text-3xl font-bold text-slate-900">
-                        ${product.price}
-                      </span>
-                      <span className="text-sm text-slate-900 line-through">
-                        ${product.price * 1.5} {/* Adjust for original price */}
-                      </span>
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="flex items-center bottom-0 w-full justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                  <a
+                    href="#"
+                    className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="mr-2 h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className="object-cover"
+                    />
+                  </a>
+                  <div className="mt-4 px-5 pb-5 flex justify-between flex-col h-auto">
+                    <a>
+                      <h5 className="text-xl tracking-tight text-slate-900">
+                        {product.title}
+                      </h5>
+                    </a>
+                    <div className="mt-2 mb-5 flex items-center justify-between">
+                      <p>
+                        <span className="text-3xl font-bold text-slate-900">
+                          ${product.price}
+                        </span>
+                        <span className="text-sm text-slate-900 line-through">
+                          ${product.price * 1.5}{" "}
+                          {/* Adjust for original price */}
+                        </span>
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => addToCart(product)}
+                      className="flex items-center bottom-0 w-full justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                      />
-                    </svg>
-                    Add to cart {product.count}
-                  </button>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="mr-2 h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+                      </svg>
+                      Add to cart {product.count}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </section>
 
       {/* <!-- why us  --> */}
       <section class="text-gray-700 body-font mt-10">
-        <div class="flex justify-center text-3xl font-bold text-gray-800 text-center">
+        <div class="flex justify-center text-3xl font-bold text-white text-center">
           Why Choose Us
         </div>
         <div class="container px-5 py-12 mx-auto">
@@ -228,7 +233,7 @@ export default function Home() {
                     class="w-32 mb-3"
                   />
                 </div>
-                <h2 class="title-font font-regular text-2xl text-gray-900">
+                <h2 class="title-font font-regular text-2xl text-white">
                   Latest Milling Machinery
                 </h2>
               </div>
@@ -242,7 +247,7 @@ export default function Home() {
                     class="w-32 mb-3"
                   />
                 </div>
-                <h2 class="title-font font-regular text-2xl text-gray-900">
+                <h2 class="title-font font-regular text-2xl text-white">
                   Reasonable Rates
                 </h2>
               </div>
@@ -256,7 +261,7 @@ export default function Home() {
                     class="w-32 mb-3"
                   />
                 </div>
-                <h2 class="title-font font-regular text-2xl text-gray-900">
+                <h2 class="title-font font-regular text-2xl text-white">
                   Time Efficiency
                 </h2>
               </div>
@@ -270,7 +275,7 @@ export default function Home() {
                     class="w-32 mb-3"
                   />
                 </div>
-                <h2 class="title-font font-regular text-2xl text-gray-900">
+                <h2 class="title-font font-regular text-2xl text-white">
                   Expertise in Industry
                 </h2>
               </div>
@@ -280,18 +285,64 @@ export default function Home() {
       </section>
 
       {/* <!-- gallery --> */}
-      <div class="flex justify-center text-3xl font-bold text-gray-800 text-center">
-        Accesories
+      <div class="flex justify-center text-3xl font-bold text-white text-center">
+        Accesorie
       </div>
 
       <section
         id="Projects"
         class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
       >
+        {products
+          .filter((e) => e.category == "jewelery")
+          .map((product) => (
+            <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+              <a href="#">
+                <img
+                  src={product.image}
+                  alt="Product"
+                  class="h-80 w-72 object-cover rounded-t-xl"
+                />
+                <div class="px-4 py-3 w-72">
+                  <span class="text-gray-400 mr-3 uppercase text-xs">
+                    Brand
+                  </span>
+                  <p class="text-lg font-bold text-black truncate block capitalize">
+                    {product.title}
+                  </p>
+                  <div class="flex items-center">
+                    <p class="text-lg font-semibold text-black cursor-auto my-3">
+                      {product.price}
+                    </p>
+                    <del>
+                      <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        class="bi bi-bag-plus"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                        />
+                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+
         <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
           <a href="#">
             <img
-              src="https://images.unsplash.com/photo-1646753522408-077ef9839300?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NjZ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              src="https://images.unsplash.com/photo-1623998021450-85c29c644e0d?q=80&w=1257&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Product"
               class="h-80 w-72 object-cover rounded-t-xl"
             />
@@ -331,7 +382,7 @@ export default function Home() {
         <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
           <a href="#">
             <img
-              src="https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              src="https://images.unsplash.com/photo-1591561954557-26941169b49e?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Product"
               class="h-80 w-72 object-cover rounded-t-xl"
             />
@@ -371,7 +422,7 @@ export default function Home() {
         <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
           <a href="#">
             <img
-              src="https://images.unsplash.com/photo-1651950537598-373e4358d320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              src="https://images.unsplash.com/photo-1546241183-0ed3f8a4a824?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Product"
               class="h-80 w-72 object-cover rounded-t-xl"
             />
@@ -411,87 +462,7 @@ export default function Home() {
         <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
           <a href="#">
             <img
-              src="https://images.unsplash.com/photo-1651950540805-b7c71869e689?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-              alt="Product"
-              class="h-80 w-72 object-cover rounded-t-xl"
-            />
-            <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
-              <p class="text-lg font-bold text-black truncate block capitalize">
-                Product Name
-              </p>
-              <div class="flex items-center">
-                <p class="text-lg font-semibold text-black cursor-auto my-3">
-                  $149
-                </p>
-                <del>
-                  <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
-                </del>
-                <div class="ml-auto">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    class="bi bi-bag-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                    />
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-          <a href="#">
-            <img
-              src="https://images.unsplash.com/photo-1649261191624-ca9f79ca3fc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-              alt="Product"
-              class="h-80 w-72 object-cover rounded-t-xl"
-            />
-            <div class="px-4 py-3 w-72">
-              <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
-              <p class="text-lg font-bold text-black truncate block capitalize">
-                Product Name
-              </p>
-              <div class="flex items-center">
-                <p class="text-lg font-semibold text-black cursor-auto my-3">
-                  $149
-                </p>
-                <del>
-                  <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
-                </del>
-                <div class="ml-auto">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    fill="currentColor"
-                    class="bi bi-bag-plus"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
-                    />
-                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-          <a href="#">
-            <img
-              src="https://images.unsplash.com/photo-1649261191606-cb2496e97eee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              src="https://images.unsplash.com/photo-1582812162044-ceaaba61685e?q=80&w=1024&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Product"
               class="h-80 w-72 object-cover rounded-t-xl"
             />
@@ -530,12 +501,70 @@ export default function Home() {
         {/* <!--   🛑 Product card 6 - Ends Here  --> */}
       </section>
 
+      <div class="flex justify-center text-3xl font-bold text-white text-center p-5">
+      Electronics
+      </div>
+
+      <section
+        id="Projects"
+        class="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5"
+      >
+        {products
+          .filter((e) => e.category == "electronics")
+          .map((product) => (
+            <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+              <a href="#">
+                <img
+                  src={product.image}
+                  alt="Product"
+                  class="h-80 w-72 object-cover rounded-t-xl"
+                />
+                <div class="px-4 py-3 w-72">
+                  <span class="text-gray-400 mr-3 uppercase text-xs">
+                    Brand
+                  </span>
+                  <p class="text-lg font-bold text-black truncate block capitalize">
+                    {product.title}
+                  </p>
+                  <div class="flex items-center">
+                    <p class="text-lg font-semibold text-black cursor-auto my-3">
+                      {product.price}
+                    </p>
+                    <del>
+                      <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+                    </del>
+                    <div class="ml-auto">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        fill="currentColor"
+                        class="bi bi-bag-plus"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z"
+                        />
+                        <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+
+       
+        {/* <!--   🛑 Product card 6 - Ends Here  --> */}
+      </section>
+
       {/* <!-- about us --> */}
       <section class="bg-gray-100" id="aboutus">
         <div class="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
           <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
             <div class="max-w-lg">
-              <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">
+              <h2 class="text-3xl font-bold text-black mb-8 text-center">
                 About Us
               </h2>
               <p class="mt-4 text-gray-600 text-lg">

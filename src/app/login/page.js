@@ -48,13 +48,13 @@ export default function Login() {
       class="bg-cover bg-center bg-fixed"
       style={{
         backgroundImage:
-          'url("https://img.freepik.com/premium-photo/bright-colors-smooth-gradient-solid-background_730620-192914.jpg?w=740")',
+          'url("https://t4.ftcdn.net/jpg/03/20/68/71/360_F_320687108_3UZ13l44Ob5cel208W7DaRnD5BR9DfY7.jpg")',
       }}
     >
-      <div class="h-screen flex justify-center items-center">
+      <div class="h-screen flex justify-start  ml-[8%] items-center">
         <div class="bg-white mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3">
-          <h1 class="text-5xl font-bold mb-8 text-center">ShopLane </h1>
-          <h1 class="text-3xl font-bold mb-8 text-center">Login </h1>
+          <h1 class="text-5xl font-bold mb-8 text-center text-black">ShopLane </h1>
+          <h1 class="text-3xl font-bold mb-8 text-center text-black">Login </h1>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label
